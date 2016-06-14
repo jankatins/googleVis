@@ -35,12 +35,7 @@
 #' @keywords jupyter 
 #'
 #' @export
-repr_html.gvis <- function(obj, ...){
-  htmlfile <- tempfile(fileext = '.html')
-  on.exit(unlink(htmlfile))
-  print(obj, tag = 'chart', file = htmlfile)
-  readChar(htmlfile, file.info(htmlfile)$size)
-}
+repr_html.gvis <- function(obj, ...) capture.output(print(obj, tag = 'chart'))
 
 # The following methods are needed to
 # a) display something -> repr_text must return something otherwise repr_html is not called
